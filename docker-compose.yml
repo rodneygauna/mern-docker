@@ -1,0 +1,29 @@
+#Docker-Compose
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    environment:
+      - MONGDO_URL=mongodb://mongodb:27017/openvolunteer
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: ${MONGODB_INITDB_ROOT_USERNAME}
+      MONGODB_INITDB_ROOT_PASSWORD: ${MONGODB_INITDB_ROOT_PASSWORD}
+      MONGODB_INITDB_DATABASE: ${MONGODB_INITDB_DATABASE}
+    ports:
+      - 27017:27017
+    volumes:
+      - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - openvolunteer:/data/db
+
+volumes:
+  openvolunteer:

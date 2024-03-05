@@ -1,0 +1,8 @@
+// Filename: mongo-init.js.sample
+db = db.getSiblingDB("openvolunteer");
+db.createUser({
+  user: "", // Add username here
+  pwd: "", // Add password here
+  roles: [{ role: "readWrite", db: "openvolunteer" }],
+});
+db.createCollection("users");
