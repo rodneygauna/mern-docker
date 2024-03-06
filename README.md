@@ -1,2 +1,2 @@
-# openvolunteer
-A free open-source software that assist organizations to manage their volunteers and programs.
+# MERN-Docker
+A starting point for learning how to MERN
